@@ -38,8 +38,9 @@ while True: #While loop 1
             if encodingmes == "":
                 clear()
                 break
-            encoding_function(encodingmes)
+            print(encoding_function(encodingmes))
             sleep(2)
+            break
             #More code
         #End of while loop encoding
     elif choice1 == 2: #Decoding a message
