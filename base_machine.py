@@ -3,6 +3,7 @@ from os import system, name #For clearing function
 from time import sleep #For adding delays
 
 import encoding_code
+import decoding_code
 
 #Function that clears terminal
 def clear():
@@ -41,13 +42,22 @@ while True: #While loop 1
             print(encoding_code.encoding_function(encodingmes))
             print("Success! The above characters are your encoded message.")
             print("Please make sure to copy them.")
-            sleep(5)
+            sleep(2)
             break
             #More code
         #End of while loop encoding
     elif choice1 == 2: #Decoding a message
-        #Do something
-        print(2)
+        clear()
+        print("Please type or paste the message that you wish to decode.")
+        print("To return to the previous menu, press enter instead.")
+        decodingmes = input()
+        if decodingmes == "":
+            clear()
+            break
+        print(decoding_code.decoding_function(decodingmes))
+        print("Nice! The above characters are the decoded message.")
+        print("Please make sure to copy or remember them.")
+        sleep(2)
     elif choice1 == 3: #Quitting out
         clear()
         print("Thank you for using this program.")
