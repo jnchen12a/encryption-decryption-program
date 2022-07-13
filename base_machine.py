@@ -57,6 +57,10 @@ while True: #While loop 1
         print(decoding_code.decoding_function(decodingmes))
         print("Nice! The above characters are the decoded message.")
         print("Please make sure to copy or remember them.")
+        from wheel_tables import owheel1_1
+        from decoding_code import wheel1_1
+        print(owheel1_1)
+        print(wheel1_1)
         sleep(2)
     elif choice1 == 3: #Quitting out
         clear()
