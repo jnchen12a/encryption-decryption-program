@@ -5,10 +5,6 @@ from wheel_tables import wheel2_2
 from wheel_tables import wheel3_1
 from wheel_tables import wheel3_2
 
-#from base_machine import wheel1_2moves
-#from base_machine import wheel2_2moves
-#from base_machine import wheel3_2moves
-
 wheel1_2moves = 0
 wheel2_2moves = 0
 wheel3_2moves = 0
