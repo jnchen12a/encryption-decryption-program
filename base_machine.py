@@ -54,7 +54,7 @@ def encoding_function(message):
             newchar = wheel3_2[index]
 
             returnmes += newchar
-            shiftwheel()
+            shiftwheel(1)
         else:
             returnmes += character
 
@@ -98,7 +98,7 @@ def decoding_function(message):
             newchar = owheel1_1[index]
 
             returnmes += newchar
-            shiftwheel()
+            shiftwheel(1)
         else:
             returnmes += character
     wheel1_2 = list(owheel1_2)
@@ -111,7 +111,7 @@ def decoding_function(message):
     return returnmes
 
 #Shifting wheel function
-def shiftwheel():
+def shiftwheel(times):
     global wheel1_2moves
     global wheel2_2moves
     global wheel3_2moves
@@ -120,18 +120,19 @@ def shiftwheel():
     global wheel2_2
     global wheel3_2
     
-    endchar = wheel1_2.pop()
-    wheel1_2.insert(0, endchar)
-    wheel1_2moves += 1
-    if wheel1_2moves == 25:
-        endchar = wheel2_2.pop()
-        wheel2_2.insert(0, endchar)
-        wheel2_2moves += 1
-        wheel1_2moves = 0
-    if wheel2_2moves == 25:
-        endchar = wheel3_2.pop()
-        wheel3_2.insert(0, endchar)
-        wheel2_2moves = 0
+    for n in range(times):
+        endchar = wheel1_2.pop()
+        wheel1_2.insert(0, endchar)
+        wheel1_2moves += 1
+        if wheel1_2moves == 25:
+            endchar = wheel2_2.pop()
+            wheel2_2.insert(0, endchar)
+            wheel2_2moves += 1
+            wheel1_2moves = 0
+        if wheel2_2moves == 25:
+            endchar = wheel3_2.pop()
+            wheel3_2.insert(0, endchar)
+            wheel2_2moves = 0
 
 #Main functioning code
 clear()
