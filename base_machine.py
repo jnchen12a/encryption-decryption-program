@@ -4,16 +4,16 @@ from time import sleep #For adding delays
 
 #Wheels
 owheel1_1 = ['Q', 'N', 'S', 'Y', 'D', 'I', 'V', 'B', 'U', 'F', 'K', 'H', 'C', 'O', 'J', 'T', 'A', 'G', 'R', 'X', 'M', 'P', 'E', 'Z', 'L', 'W']
-owheel1_2 = ['Z', 'H', 'C', 'M', 'Q', 'B', 'X', 'E', 'D', 'U', 'F', 'V', 'W', 'S', 'A', 'T', 'G', 'I', 'J', 'P', 'L', 'Y', 'O', 'R', 'N', 'K']
-wheel1_2 = owheel1_2
+owheel1_2 = ('Z', 'H', 'C', 'M', 'Q', 'B', 'X', 'E', 'D', 'U', 'F', 'V', 'W', 'S', 'A', 'T', 'G', 'I', 'J', 'P', 'L', 'Y', 'O', 'R', 'N', 'K')
+wheel1_2 = ['Z', 'H', 'C', 'M', 'Q', 'B', 'X', 'E', 'D', 'U', 'F', 'V', 'W', 'S', 'A', 'T', 'G', 'I', 'J', 'P', 'L', 'Y', 'O', 'R', 'N', 'K']
 
 owheel2_1 = ['P', 'X', 'T', 'Z', 'K', 'Y', 'F', 'O', 'Q', 'D', 'N', 'W', 'G', 'H', 'U', 'I', 'M', 'C', 'J', 'E', 'S', 'B', 'L', 'R', 'V', 'A']
-owheel2_2 = ['A', 'U', 'V', 'Q', 'L', 'H', 'I', 'Z', 'Y', 'P', 'T', 'K', 'S', 'E', 'G', 'D', 'M', 'B', 'O', 'N', 'J', 'X', 'F', 'R', 'W', 'C']
-wheel2_2 = owheel2_2
+owheel2_2 = ('A', 'U', 'V', 'Q', 'L', 'H', 'I', 'Z', 'Y', 'P', 'T', 'K', 'S', 'E', 'G', 'D', 'M', 'B', 'O', 'N', 'J', 'X', 'F', 'R', 'W', 'C')
+wheel2_2 = ['A', 'U', 'V', 'Q', 'L', 'H', 'I', 'Z', 'Y', 'P', 'T', 'K', 'S', 'E', 'G', 'D', 'M', 'B', 'O', 'N', 'J', 'X', 'F', 'R', 'W', 'C']
 
 owheel3_1 = ['W', 'D', 'I', 'B', 'K', 'L', 'X', 'P', 'J', 'R', 'Q', 'Z', 'V', 'T', 'N', 'G', 'Y', 'U', 'S', 'H', 'C', 'A', 'M', 'E', 'F', 'O']
-owheel3_2 = ['Y', 'S', 'W', 'L', 'P', 'E', 'G', 'Z', 'I', 'H', 'U', 'N', 'D', 'J', 'X', 'B', 'F', 'K', 'Q', 'C', 'V', 'R', 'T', 'A', 'O', 'M']
-wheel3_2 = owheel3_2
+owheel3_2 = ('Y', 'S', 'W', 'L', 'P', 'E', 'G', 'Z', 'I', 'H', 'U', 'N', 'D', 'J', 'X', 'B', 'F', 'K', 'Q', 'C', 'V', 'R', 'T', 'A', 'O', 'M')
+wheel3_2 = ['Y', 'S', 'W', 'L', 'P', 'E', 'G', 'Z', 'I', 'H', 'U', 'N', 'D', 'J', 'X', 'B', 'F', 'K', 'Q', 'C', 'V', 'R', 'T', 'A', 'O', 'M']
 
 wheel1_2moves = 0
 wheel2_2moves = 0
@@ -56,16 +56,59 @@ def encoding_function(message):
             returnmes += newchar
             shiftwheel()
         else:
-            returnmes += character   
-    wheel1_2 = owheel1_2
-    wheel2_2 = owheel2_2
-    wheel3_2 = owheel3_2
+            returnmes += character
+
+
+    wheel1_2 = list(owheel1_2)
+    wheel2_2 = list(owheel2_2)
+    wheel3_2 = list(owheel3_2)
     wheel1_2moves = 0
     wheel2_2moves = 0
     wheel3_2moves = 0
     return returnmes
 
 #Decoding function
+def decoding_function(message):
+    returnmes = ""
+
+    global owheel1_1
+    global owheel1_2
+    global wheel1_2
+    global owheel2_1
+    global owheel2_2
+    global wheel2_2
+    global owheel3_1
+    global owheel3_2
+    global wheel3_2
+    global wheel1_2moves
+    global wheel2_2moves
+    global wheel3_2moves
+
+    message = message.upper()
+    message = list(message)
+    for character in message:
+        if character in wheel3_2:
+            index = wheel3_2.index(character)
+            newchar = owheel3_1[index]
+
+            index = wheel2_2.index(newchar)
+            newchar = owheel2_1[index]
+
+            index = wheel1_2.index(newchar)
+            newchar = owheel1_1[index]
+
+            returnmes += newchar
+            shiftwheel()
+        else:
+            returnmes += character
+    wheel1_2 = list(owheel1_2)
+    wheel2_2 = list(owheel2_2)
+    wheel3_2 = list(owheel3_2)
+    wheel1_2moves = 0
+    wheel2_2moves = 0
+    wheel3_2moves = 0
+    
+    return returnmes
 
 #Shifting wheel function
 def shiftwheel():
@@ -115,8 +158,6 @@ while True: #While loop 1
     if choice1 == 1: #Encoding a message
         while True: #While loop encoding
             clear()
-            print(owheel1_2)
-            print(wheel1_2)
             print("Please type or paste the message that you wish to encode.")
             print("To return to the previous menu, press enter instead.")
             encodingmes = input()
@@ -126,8 +167,6 @@ while True: #While loop 1
             print(encoding_function(encodingmes))
             print("Success! The above characters are your encoded message.")
             print("Please make sure to copy them.")
-            print(owheel1_2)
-            print(wheel1_2)
             sleep(2)
             break
             #More code
