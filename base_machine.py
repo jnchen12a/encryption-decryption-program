@@ -45,34 +45,21 @@ def encoding_function(message):
 
     message = list(message)
 
-    #Generating random wheel start positions
-    value1 = randint(0, 63) % 25
-    value2 = randint(0, 63) % 25
-    value3 = randint(0, 63) % 25
 
-    returnmes += str(owheel1_1[value3])
-    returnmes += str(owheel1_1[value2])
-    returnmes += str(owheel1_1[value1])
-
-    startshift = value1 + (value2 * 25) + (value3 * 625)
-    shiftwheel(startshift)
 
     #Generating encoded message
     for character in message:
-        if character in owheel1_1:
-            index = owheel1_1.index(character)
-            newchar = wheel1_2[index]
+        index = owheel1_1.index(character)
+        newchar = wheel1_2[index]
 
-            index = owheel2_1.index(newchar)
-            newchar = wheel2_2[index]
+        index = owheel2_1.index(newchar)
+        newchar = wheel2_2[index]
 
-            index = owheel3_1.index(newchar)
-            newchar = wheel3_2[index]
+        index = owheel3_1.index(newchar)
+        newchar = wheel3_2[index]
 
-            returnmes += newchar
-            shiftwheel(1)
-        else:
-            returnmes += character
+        returnmes += newchar
+        shiftwheel(1)
 
 
     wheel1_2 = list(owheel1_2)
@@ -101,34 +88,22 @@ def decoding_function(message):
 
     message = list(message)
 
-    #Decoding starting wheel positions
-    chr1 = message.pop(0)
-    chr2 = message.pop(0)
-    chr3 = message.pop(0)
 
-    value1 = owheel1_1.index(chr1) % 25
-    value2 = owheel1_1.index(chr2) % 25
-    value3 = owheel1_1.index(chr3) % 25
-
-    startshift = value1 + (value2 * 25) + (value3 * 625)
-    shiftwheel(startshift)
 
     #Decoding actual message
     for character in message:
-        if character in wheel3_2:
-            index = wheel3_2.index(character)
-            newchar = owheel3_1[index]
+        index = wheel3_2.index(character)
+        newchar = owheel3_1[index]
 
-            index = wheel2_2.index(newchar)
-            newchar = owheel2_1[index]
+        index = wheel2_2.index(newchar)
+        newchar = owheel2_1[index]
 
-            index = wheel1_2.index(newchar)
-            newchar = owheel1_1[index]
+        index = wheel1_2.index(newchar)
+        newchar = owheel1_1[index]
 
-            returnmes += newchar
-            shiftwheel(1)
-        else:
-            returnmes += character
+        returnmes += newchar
+        shiftwheel(1)
+
     wheel1_2 = list(owheel1_2)
     wheel2_2 = list(owheel2_2)
     wheel3_2 = list(owheel3_2)
@@ -144,7 +119,7 @@ def shiftwheel(times):
     global wheel2_2
     global wheel3_2
     
-    for n in range(times - 1):
+    for n in range(times):
         endchar = wheel1_2.pop()
         wheel1_2.insert(0, endchar)
         wheel1_2moves += 1
