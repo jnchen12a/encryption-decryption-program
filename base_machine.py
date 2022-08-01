@@ -4,7 +4,7 @@ from time import sleep #For adding delays
 
 from random import randint
 
-#Wheels
+#Wheels, 95 items each
 owheel1_1 = ('v', 'j', '1', '6', '5', '@', '8', 'M', 'Y', 'y', '_', 'n', 'L', '|', '4', 'O', '{', 'F', 'V', '<', ',', 'T', 't', ':', '=', 'J', '2', 'm', 'R', 'z', 'K', '/', 'H', 'W', ']', 'g', 'B', 'x', 'Z', 'i', '0', '?', 'U', '%', ';', '!', 'Q', 'e', '#', 'w', 'o', '>', 'I', '7', 'q', '(', '}', ' ', '\\', '.', '`', '3', 'S', '*', 'c', 'b', 'l', 'N', "'", 'A', 'C', '9', 's', 'r', 'h', 'E', '+', 'd', '$', 'P', '-', 'u', 'X', 'f', '~', '"', 'a', '^', 'k', 'D', ')', '[', 'p', 'G', '&')
 owheel1_2 = ("w", "_", "e", "2", ">", "Q", '"', ";", "9", "u", "<", "p", "1", "m", "P", "/", "q", "}", "J", "F", "v", "$", "[", "(", "~", "#", "x", "%", "U", "Z", "^", "j", "3", "E", "|", "s", "N", "d", "&", "b", "`", "y", "6", ")", "G", "t", "k", "f", "l", "i", "S", "W", "{", "8", "!", "M", "D", "=", "7", "?", "h", "a", "@", "R", "\\", "z", "0", "-", "O", " ", "r", "A", "5", "I", "]", ".", "L", "T", "X", "g", "Y", "*", ",", "K", "H", "4", "C", "+", "n", ":", "V", "o", "B", "c", "'")
 wheel1_2 = ["w", "_", "e", "2", ">", "Q", '"', ";", "9", "u", "<", "p", "1", "m", "P", "/", "q", "}", "J", "F", "v", "$", "[", "(", "~", "#", "x", "%", "U", "Z", "^", "j", "3", "E", "|", "s", "N", "d", "&", "b", "`", "y", "6", ")", "G", "t", "k", "f", "l", "i", "S", "W", "{", "8", "!", "M", "D", "=", "7", "?", "h", "a", "@", "R", "\\", "z", "0", "-", "O", " ", "r", "A", "5", "I", "]", ".", "L", "T", "X", "g", "Y", "*", ",", "K", "H", "4", "C", "+", "n", ":", "V", "o", "B", "c", "'"]
@@ -26,8 +26,6 @@ def clear():
 
 #Encoding function
 def encoding_function(message):
-    returnmes = ""
-
     global owheel1_1
     global owheel1_2
     global wheel1_2
@@ -40,12 +38,21 @@ def encoding_function(message):
     global wheel1_2moves
     global wheel2_2moves
 
+    returnmes = ""
     wheel1_2moves = 0
     wheel2_2moves = 0
 
     message = list(message)
 
+    value1 = randint(0, 94)
+    value2 = randint(0, 94)
+    value3 = randint(0, 94)
 
+    returnmes = owheel1_1[value1] + owheel1_1[value2] + owheel1_1[value3]
+
+    startshift = value1 + (value2 * 95) + (value3 * 9025)
+
+    shiftwheel(startshift)
 
     #Generating encoded message
     for character in message:
@@ -69,8 +76,6 @@ def encoding_function(message):
 
 #Decoding function
 def decoding_function(message):
-    returnmes = ""
-
     global owheel1_1
     global owheel1_2
     global wheel1_2
@@ -83,14 +88,25 @@ def decoding_function(message):
     global wheel1_2moves
     global wheel2_2moves
 
+    returnmes = ""
     wheel1_2moves = 0
     wheel2_2moves = 0
 
     message = list(message)
 
+    value1 = message.pop(0)
+    value2 = message.pop(0)
+    value3 = message.pop(0)
 
+    value1 = owheel1_1.index(value1)
+    value2 = owheel1_1.index(value2)
+    value3 = owheel1_1.index(value3)
 
-    #Decoding actual message
+    startshift = value1 + (value2 * 95) + (value3 * 9025)
+
+    shiftwheel(startshift)
+
+    #Decoding actual 
     for character in message:
         index = wheel3_2.index(character)
         newchar = owheel3_1[index]
@@ -123,12 +139,12 @@ def shiftwheel(times):
         endchar = wheel1_2.pop()
         wheel1_2.insert(0, endchar)
         wheel1_2moves += 1
-        if wheel1_2moves == 25:
+        if wheel1_2moves == 95:
             endchar = wheel2_2.pop()
             wheel2_2.insert(0, endchar)
             wheel2_2moves += 1
             wheel1_2moves = 0
-        if wheel2_2moves == 25:
+        if wheel2_2moves == 95:
             endchar = wheel3_2.pop()
             wheel3_2.insert(0, endchar)
             wheel2_2moves = 0
@@ -167,8 +183,6 @@ while True: #While loop 1
             print(encoding_function(encodingmes))
             print("Success! The above characters are your encoded message.")
             print("Please make sure to copy them.")
-            print(wheel1_2)
-            print(wheel1_2moves)
             sleep(2)
             break
             #More code
@@ -180,7 +194,12 @@ while True: #While loop 1
         decodingmes = input()
         if decodingmes == "":
             clear()
-            break
+            continue
+        elif len(decodingmes) < 4:
+            print("Sorry. There is something wrong with what you just entered.\nPlease have the encoded message sent again and try once more.")
+            sleep(10)
+            clear()
+            continue
         print(decoding_function(decodingmes))
         print("Nice! The above characters are the decoded message.")
         print("Please make sure to copy or remember them.")
