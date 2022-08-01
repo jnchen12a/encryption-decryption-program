@@ -188,9 +188,10 @@ while True: #While loop 1
             if encodingmes == "":
                 clear()
                 break
+            print()
+            print("Success! The characters below are your encoded message.")
+            print("Please make sure to copy them:")
             print(encoding_function(encodingmes))
-            print("Success! The above characters are your encoded message.")
-            print("Please make sure to copy them.")
             sleep(2)
             break
             #More code
@@ -208,9 +209,10 @@ while True: #While loop 1
             sleep(10)
             clear()
             continue
+        print()
+        print("Nice! The characters below are your decoded message.")
+        print("Please make sure to copy or remember them:")
         print(decoding_function(decodingmes))
-        print("Nice! The above characters are the decoded message.")
-        print("Please make sure to copy or remember them.")
         sleep(2)
     elif choice1 == 3: #Quitting out
         clear()
