@@ -38,40 +38,48 @@ def encoding_function(message):
     global wheel1_2moves
     global wheel2_2moves
 
-    returnmes = ""
-    wheel1_2moves = 0
-    wheel2_2moves = 0
+    while True:
+        returnmes = ""
+        wheel1_2moves = 0
+        wheel2_2moves = 0
 
-    message = list(message)
+        message = list(message)
 
-    value1 = randint(0, 94)
-    value2 = randint(0, 94)
-    value3 = randint(0, 94)
+        value1 = randint(0, 94)
+        value2 = randint(0, 94)
+        value3 = randint(0, 94)
 
-    returnmes = owheel1_1[value1] + owheel1_1[value2] + owheel1_1[value3]
+        returnmes = owheel1_1[value1] + owheel1_1[value2] + owheel1_1[value3]
 
-    startshift = value1 + (value2 * 95) + (value3 * 9025)
+        startshift = value1 + (value2 * 95) + (value3 * 9025)
 
-    shiftwheel(startshift)
+        shiftwheel(startshift)
 
-    #Generating encoded message
-    for character in message:
-        index = owheel1_1.index(character)
-        newchar = wheel1_2[index]
+        #Generating encoded message
+        for character in message:
+            index = owheel1_1.index(character)
+            newchar = wheel1_2[index]
 
-        index = owheel2_1.index(newchar)
-        newchar = wheel2_2[index]
+            index = owheel2_1.index(newchar)
+            newchar = wheel2_2[index]
 
-        index = owheel3_1.index(newchar)
-        newchar = wheel3_2[index]
+            index = owheel3_1.index(newchar)
+            newchar = wheel3_2[index]
 
-        returnmes += newchar
-        shiftwheel(1)
+            returnmes += newchar
+            shiftwheel(1)
 
 
-    wheel1_2 = list(owheel1_2)
-    wheel2_2 = list(owheel2_2)
-    wheel3_2 = list(owheel3_2)
+        wheel1_2 = list(owheel1_2)
+        wheel2_2 = list(owheel2_2)
+        wheel3_2 = list(owheel3_2)
+
+        returnmesl = list(returnmes)
+        if returnmesl[-1] == " ":
+            continue
+        else:
+            break
+    
     return returnmes
 
 #Decoding function
