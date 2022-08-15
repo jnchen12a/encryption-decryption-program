@@ -76,6 +76,12 @@ def encoding_function():
             index = owheel3_1.index(newchar)
             newchar = wheel3_2[index]
 
+            index = wheel2_2.index(newchar)
+            newchar = owheel2_1[index]
+
+            index = wheel1_2.index(newchar)
+            newchar = owheel1_1[index]
+
             returnmes += newchar
             shiftwheel(1)
 
@@ -137,7 +143,14 @@ def decoding_function():
 
     #Decoding actual 
     for character in message:
-        index = wheel3_2.index(character)
+
+        index = owheel1_1.index(character)
+        newchar = wheel1_2[index]
+
+        index = owheel2_1.index(newchar)
+        newchar = wheel2_2[index]
+
+        index = wheel3_2.index(newchar)
         newchar = owheel3_1[index]
 
         index = wheel2_2.index(newchar)
