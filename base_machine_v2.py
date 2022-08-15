@@ -48,59 +48,64 @@ def encoding_function():
         en.delete(1.0, 'end')
         return
 
-    while True:
-        returnmes = ""
-        wheel1_2moves = 0
-        wheel2_2moves = 0
+    try:
+        while True:
+            returnmes = ""
+            wheel1_2moves = 0
+            wheel2_2moves = 0
 
-        message = list(message)
+            message = list(message)
 
-        value1 = randint(0, 94)
-        value2 = randint(0, 94)
-        value3 = randint(0, 94)
+            value1 = randint(0, 94)
+            value2 = randint(0, 94)
+            value3 = randint(0, 94)
 
-        returnmes = owheel1_1[value1] + owheel1_1[value2] + owheel1_1[value3]
+            returnmes = owheel1_1[value1] + owheel1_1[value2] + owheel1_1[value3]
 
-        startshift = value1 + (value2 * 95) + (value3 * 9025)
+            startshift = value1 + (value2 * 95) + (value3 * 9025)
 
-        shiftwheel(startshift)
+            shiftwheel(startshift)
 
-        #Generating encoded message
-        for character in message:
-            index = owheel1_1.index(character)
-            newchar = wheel1_2[index]
+            #Generating encoded message
+            for character in message:
+                index = owheel1_1.index(character)
+                newchar = wheel1_2[index]
 
-            index = owheel2_1.index(newchar)
-            newchar = wheel2_2[index]
+                index = owheel2_1.index(newchar)
+                newchar = wheel2_2[index]
 
-            index = owheel3_1.index(newchar)
-            newchar = wheel3_2[index]
+                index = owheel3_1.index(newchar)
+                newchar = wheel3_2[index]
 
-            index = wheel2_2.index(newchar)
-            newchar = owheel2_1[index]
+                index = wheel2_2.index(newchar)
+                newchar = owheel2_1[index]
 
-            index = wheel1_2.index(newchar)
-            newchar = owheel1_1[index]
+                index = wheel1_2.index(newchar)
+                newchar = owheel1_1[index]
 
-            returnmes += newchar
-            shiftwheel(1)
+                returnmes += newchar
+                shiftwheel(1)
 
 
-        wheel1_2 = list(owheel1_2)
-        wheel2_2 = list(owheel2_2)
-        wheel3_2 = list(owheel3_2)
+            wheel1_2 = list(owheel1_2)
+            wheel2_2 = list(owheel2_2)
+            wheel3_2 = list(owheel3_2)
 
-        returnmesl = list(returnmes)
-        if returnmesl[-1] == " ":
-            continue
-        else:
-            break
+            returnmesl = list(returnmes)
+            if returnmesl[-1] == " ":
+                continue
+            else:
+                break
 
-    messagebox.showinfo("Encoded message", "Success! Here is your encoded message. Click 'OK' to copy it:\n" + returnmes)
-    root.clipboard_clear()
-    root.clipboard_append(returnmes)
-    root.update()
-    en.delete(1.0, 'end')
+        messagebox.showinfo("Encoded message", "Success! Here is your encoded message. Click 'OK' to copy it:\n" + returnmes)
+        root.clipboard_clear()
+        root.clipboard_append(returnmes)
+        root.update()
+        en.delete(1.0, 'end')
+    except:
+        messagebox.showerror("Error", "Sorry, some special characters in your message couldn't be processed. Please try entering a different one.")
+        en.delete(1.0, 'end')
+        return
 
 #Decoding function
 def decoding_function():
@@ -123,55 +128,60 @@ def decoding_function():
         en.delete(1.0, 'end')
         return
 
-    returnmes = ""
-    wheel1_2moves = 0
-    wheel2_2moves = 0
+    try:
+        returnmes = ""
+        wheel1_2moves = 0
+        wheel2_2moves = 0
 
-    message = list(message)
+        message = list(message)
 
-    value1 = message.pop(0)
-    value2 = message.pop(0)
-    value3 = message.pop(0)
+        value1 = message.pop(0)
+        value2 = message.pop(0)
+        value3 = message.pop(0)
 
-    value1 = owheel1_1.index(value1)
-    value2 = owheel1_1.index(value2)
-    value3 = owheel1_1.index(value3)
+        value1 = owheel1_1.index(value1)
+        value2 = owheel1_1.index(value2)
+        value3 = owheel1_1.index(value3)
 
-    startshift = value1 + (value2 * 95) + (value3 * 9025)
+        tartshift = value1 + (value2 * 95) + (value3 * 9025)
 
-    shiftwheel(startshift)
+        shiftwheel(startshift)
 
-    #Decoding actual 
-    for character in message:
+        #Decoding actual 
+        for character in message:
 
-        index = owheel1_1.index(character)
-        newchar = wheel1_2[index]
+            index = owheel1_1.index(character)
+            newchar = wheel1_2[index]
 
-        index = owheel2_1.index(newchar)
-        newchar = wheel2_2[index]
+            index = owheel2_1.index(newchar)
+            newchar = wheel2_2[index]
 
-        index = wheel3_2.index(newchar)
-        newchar = owheel3_1[index]
+            index = wheel3_2.index(newchar)
+            newchar = owheel3_1[index]
 
-        index = wheel2_2.index(newchar)
-        newchar = owheel2_1[index]
+            index = wheel2_2.index(newchar)
+            newchar = owheel2_1[index]
 
-        index = wheel1_2.index(newchar)
-        newchar = owheel1_1[index]
+            index = wheel1_2.index(newchar)
+            newchar = owheel1_1[index]
 
-        returnmes += newchar
-        shiftwheel(1)
+            returnmes += newchar
+            shiftwheel(1)
 
-    wheel1_2 = list(owheel1_2)
-    wheel2_2 = list(owheel2_2)
-    wheel3_2 = list(owheel3_2)
+        wheel1_2 = list(owheel1_2)
+        wheel2_2 = list(owheel2_2)
+        wheel3_2 = list(owheel3_2)
 
-    returnmesl = list(returnmes)
-    if returnmesl[-1] == '\n':
-        returnmes = returnmes.rstrip(returnmes[-1])
+        returnmesl = list(returnmes)
+        if returnmesl[-1] == '\n':
+            returnmes = returnmes.rstrip(returnmes[-1])
     
-    messagebox.showinfo("Decoded message", "Success! Here is your decoded message:\n" + returnmes)
-    en.delete(1.0, 'end')
+        messagebox.showinfo("Decoded message", "Success! Here is your decoded message:\n" + returnmes)
+        en.delete(1.0, 'end')
+    except:
+        messagebox.showerror("Error", "There seems to be something wrong with that message. Please double check its correctness and try again.")
+        en.delete(1.0, 'end')
+        return
 
 #Shifting wheel function
 def shiftwheel(times):
@@ -197,18 +207,21 @@ def shiftwheel(times):
             wheel2_2moves = 0
 
 label1 = Label(root, text = "Please enter your text in the box below and choose\nto encode or decode it.", font=('Helvatical bold',20))
-label1.grid(row = 0, column = 0, columnspan = 2, padx = 10, pady = 10)
+label1.grid(row = 0, column = 0, columnspan = 2, padx = 10)
 
 borderColor = Frame(root, background = 'black', borderwidth = 2)
-borderColor.grid(row = 1, column = 0, columnspan = 2, padx = 10)
+borderColor.grid(row = 1, column = 0, columnspan = 2, padx = 10, pady = 20)
 
 en = Text(borderColor, width = 35, font=('Helvatical bold',20), wrap = "word", height = 5)
 en.pack()
 
 encodingButton = Button(root, text = "Encode This!", command = encoding_function, font=('Helvatical bold', 15))
-encodingButton.grid(row = 2, column = 0, padx = 10, pady = 10)
+encodingButton.grid(row = 2, column = 0, padx = 10)
 
 decodingButton = Button(root, text = "Decode This!", command = decoding_function, font=('Helvatical bold', 15))
-decodingButton.grid(row = 2, column = 1, padx = 10, pady = 10)
+decodingButton.grid(row = 2, column = 1, padx = 10)
+
+cright = Label(root, text = '© Jason Chen', font=('Helvatical bold',10))
+cright.grid(row = 3, column = 0, columnspan = 2, padx = 10, sticky = 'e')
 
 root.mainloop()
