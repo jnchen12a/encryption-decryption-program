@@ -165,6 +165,10 @@ def decoding_function():
     wheel1_2 = list(owheel1_2)
     wheel2_2 = list(owheel2_2)
     wheel3_2 = list(owheel3_2)
+
+    returnmesl = list(returnmes)
+    if returnmesl[-1] == '\n':
+        returnmes = returnmes.rstrip(returnmes[-1])
     
     messagebox.showinfo("Decoded message", "Success! Here is your decoded message:\n" + returnmes)
     en.delete(1.0, 'end')
