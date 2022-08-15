@@ -9,10 +9,6 @@ root.title("Encoding/Decoding Machine")
 root.geometry('+20+40')
 root.resizable(FALSE, FALSE)
 
-from os import system, name #For clearing function
-
-from time import sleep #For adding delays
-
 from random import randint
 
 #Wheels, 95 items each
