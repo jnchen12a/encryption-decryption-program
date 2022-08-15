@@ -195,8 +195,11 @@ def shiftwheel(times):
 label1 = Label(root, text = "Please enter your text in the box below and choose\nto encode or decode it.", font=('Helvatical bold',20))
 label1.grid(row = 0, column = 0, columnspan = 2, padx = 10, pady = 10)
 
-en = Text(root, width = 35, font=('Helvatical bold',20), wrap = "word", height = 5)
-en.grid(row = 1, column = 0, columnspan = 2, padx = 10)
+borderColor = Frame(root, background = 'black', borderwidth = 2)
+borderColor.grid(row = 1, column = 0, columnspan = 2, padx = 10)
+
+en = Text(borderColor, width = 35, font=('Helvatical bold',20), wrap = "word", height = 5)
+en.pack()
 
 encodingButton = Button(root, text = "Encode This!", command = encoding_function, font=('Helvatical bold', 15))
 encodingButton.grid(row = 2, column = 0, padx = 10, pady = 10)
