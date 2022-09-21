@@ -1,4 +1,4 @@
-# encryption-decryption-machine
+# encryption-decryption-program
 Encode or decode a message! Inspired by the Enigma machine.
 ## Notes
 base_machine.py runs in the terminal.
