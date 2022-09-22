@@ -143,7 +143,7 @@ def decoding_function():
         value2 = owheel1_1.index(value2)
         value3 = owheel1_1.index(value3)
 
-        tartshift = value1 + (value2 * 95) + (value3 * 9025)
+        startshift = value1 + (value2 * 95) + (value3 * 9025)
 
         shiftwheel(startshift)
 
